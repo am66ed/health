@@ -114,7 +114,7 @@ const S = {
   /* Fields grid */
   fieldsGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 20px' },
   /* Float-label field */
-  flField: { position: 'relative', marginBottom: '18px' },
+  flField: { position: 'relative', marginBottom: '18px', display: 'flex' },
   flFieldInput: {
     width: '100%', height: '54px',
     padding: '20px 14px 6px',
@@ -172,7 +172,10 @@ const S = {
 function CertField({ label, value, id }) {
   const hasVal = value !== '' && value !== null && value !== undefined;
   return (
-    <div style={S.flField}>
+    <div style={S.flField} className="cert-fl-field">
+      <label htmlFor={id} style={hasVal ? S.flLabelUp : S.flLabelCenter}>
+        {label}
+      </label>
       <input
         id={id}
         type="text"
@@ -182,9 +185,6 @@ function CertField({ label, value, id }) {
         style={S.flFieldInput}
         aria-label={label}
       />
-      <label htmlFor={id} style={hasVal ? S.flLabelUp : S.flLabelCenter}>
-        {label}
-      </label>
     </div>
   );
 }
@@ -211,7 +211,7 @@ function BalaydLogo() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   CertificatePage – pixel-perfect match to balady_health_certificate.html
+   CertificatePage – Responsive & pixel-perfect
    ═══════════════════════════════════════════════════════════════════════════ */
 export default function CertificatePage() {
   const { id } = useParams();
@@ -235,13 +235,60 @@ export default function CertificatePage() {
 
   return (
     <div style={S.body}>
-      {/* keyframe for spinner */}
-      <style>{`@keyframes spin{to{transform:rotate(360deg)}}`}</style>
+      {/* ─── CSS For Mobile Responsiveness (matching screenshot exactly) ─── */}
+      <style>{`
+        @keyframes spin { to { transform: rotate(360deg) } }
+        
+        .cert-hamburger { display: none; background: none; border: none; cursor: pointer; }
+        
+        @media (max-width: 768px) {
+          /* Top Gov Bar */
+          .cert-gov-bar-inner { flex-direction: column !important; padding: 10px 16px !important; gap: 8px; }
+          .cert-gov-bar-right { flex-direction: column !important; gap: 8px !important; text-align: center; }
+          .cert-gov-bar-left { width: 100%; justify-content: space-between !important; margin-top: 8px; border-top: 1px solid #eee; padding-top: 8px; }
+          
+          /* Main Header */
+          .cert-header-inner { flex-direction: row-reverse !important; padding: 0 16px !important; height: 70px !important; }
+          .cert-main-nav, .cert-header-actions { display: none !important; }
+          .cert-hamburger { display: block !important; }
+          
+          /* Page bg & Card */
+          .cert-page-bg { background: #fff !important; padding: 15px 0 !important; }
+          .cert-card { box-shadow: none !important; padding: 0 16px !important; border-radius: 0 !important; }
+          .cert-page-title { color: #44546A !important; font-size: 28px !important; margin-bottom: 20px !important; }
+          
+          /* Fields */
+          .cert-fields-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          
+          /* Stacked Labels for Mobile */
+          .cert-fl-field { flex-direction: column !important; margin-bottom: 0 !important; }
+          .cert-fl-field label { 
+            position: static !important; 
+            transform: none !important; 
+            font-size: 14px !important; 
+            color: #000 !important; 
+            font-weight: 700 !important; 
+            margin-bottom: 6px !important;
+            display: block !important;
+            text-align: right;
+          }
+          .cert-fl-field input { 
+            padding: 12px 14px !important; 
+            height: 48px !important; 
+            background: #f8f9fa !important; 
+            border: 1px solid #ced4da !important;
+            color: #495057 !important;
+          }
+          
+          /* Footer */
+          .cert-footer-inner { flex-direction: column; text-align: center; gap: 15px; }
+        }
+      `}</style>
 
       {/* ── TOP GOVERNMENT BAR ── */}
       <div style={S.govBar}>
-        <div style={S.govBarInner}>
-          <div style={S.govBarRight}>
+        <div style={S.govBarInner} className="cert-gov-bar-inner">
+          <div style={S.govBarRight} className="cert-gov-bar-right">
             <span style={S.saFlag}>🇸🇦</span>
             <span style={{ color: '#555', fontSize: '13px' }}>
               موقع حكومي مسجل لدى هيئة الحكومة الرقمية
@@ -250,7 +297,7 @@ export default function CertificatePage() {
               كيف تتحقق <span style={S.chev}>⌄</span>
             </a>
           </div>
-          <div style={S.govBarLeft}>
+          <div style={S.govBarLeft} className="cert-gov-bar-left">
             <a href="#" style={S.govBarLeftA}>⚙ الإعدادات</a>
             <a href="#" style={S.govBarLeftA}>♿ أدوات سهولة الوصول</a>
           </div>
@@ -259,7 +306,7 @@ export default function CertificatePage() {
 
       {/* ── MAIN HEADER ── */}
       <header style={S.mainHeader}>
-        <div style={S.headerInner}>
+        <div style={S.headerInner} className="cert-header-inner">
 
           {/* Logo */}
           <a href="/" style={S.logoLink}>
@@ -272,7 +319,7 @@ export default function CertificatePage() {
           </a>
 
           {/* Nav */}
-          <nav style={S.mainNav}>
+          <nav style={S.mainNav} className="cert-main-nav">
             <a href="#" style={S.navA}>عن بلدي <span style={S.arr}>&#8964;</span></a>
             <a href="#" style={S.navActive}>الخدمات <span style={S.arr}>&#8964;</span></a>
             <a href="#" style={S.navA}>الاستعلامات</a>
@@ -280,7 +327,7 @@ export default function CertificatePage() {
           </nav>
 
           {/* Actions */}
-          <div style={S.headerActions}>
+          <div style={S.headerActions} className="cert-header-actions">
             <a href="#" style={S.btnBusiness}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"
                 style={{ width: '14px', height: '14px', flexShrink: 0 }}>
@@ -299,11 +346,20 @@ export default function CertificatePage() {
               بحث
             </button>
           </div>
+          
+          {/* Hamburger Icon for Mobile */}
+          <button className="cert-hamburger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2" style={{ width: 28, height: 28 }}>
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
         </div>
       </header>
 
       {/* ── PAGE CONTENT ── */}
-      <div style={S.pageBg}>
+      <div style={S.pageBg} className="cert-page-bg">
         <div style={S.pageWrap}>
 
           {/* Loading */}
@@ -319,8 +375,8 @@ export default function CertificatePage() {
 
           {/* Certificate card */}
           {person && !loading && (
-            <div style={S.card}>
-              <h2 style={S.pageTitle}>شهادة صحية</h2>
+            <div style={S.card} className="cert-card">
+              <h2 style={S.pageTitle} className="cert-page-title">شهادة صحية</h2>
 
               {/* Person photo */}
               <div style={S.photoCenter}>
@@ -349,7 +405,7 @@ export default function CertificatePage() {
               </div>
 
               {/* Fields grid – exact same order as reference HTML */}
-              <div style={S.fieldsGrid}>
+              <div style={S.fieldsGrid} className="cert-fields-grid">
 
                 <CertField id="cert-amanah"      label="الامانة"                            value={person.amanah} />
                 <CertField id="cert-municipality" label="البلدية"                            value={person.municipality} />
@@ -387,7 +443,7 @@ export default function CertificatePage() {
 
       {/* ── FOOTER ── */}
       <footer style={S.siteFooter}>
-        <div style={S.footerInner}>
+        <div style={S.footerInner} className="cert-footer-inner">
           <div style={S.footerLinks}>
             <a href="#" style={S.footerLinkA}>خريطة الموقع</a>
             <a href="#" style={S.footerLinkA}>RSS</a>
