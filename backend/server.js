@@ -10,7 +10,7 @@ const PORT     = process.env.PORT     || 5000;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/balady_health';
 
 // ── Middleware ──────────────────────────────────────────────────────────────
-app.use(cors({ origin: ['http://localhost:5173', 'http://127.0.0.1:5173'] }));
+app.use(cors()); // Allow all origins for the production frontend
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
