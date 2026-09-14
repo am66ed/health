@@ -1,0 +1,40 @@
+# ── Dependencies ──────────────────────────────────
+node_modules/
+
+# ── Environment variables (sensitive!) ────────────
+.env
+.env.local
+.env.*.local
+
+# ── Uploads (local photos - now on Cloudinary) ────
+backend/uploads/
+
+# ── Build output ──────────────────────────────────
+dist/
+build/
+
+# ── Vite cache ────────────────────────────────────
+.vite/
+
+# ── Logs ──────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── OS files ──────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor ────────────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ── Lock files (optional to track) ───────────────
+# package-lock.json
+# yarn.lock
