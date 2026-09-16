@@ -354,7 +354,7 @@ export default function CertificatePage() {
           {/* Certificate card */}
           {person && !loading && (
             <div style={S.card} className="cert-card">
-              <h2 style={S.pageTitle} className="cert-page-title">شهادة صحية</h2>
+              <h2 style={S.pageTitle} className="cert-page-title">شهادة صحية للانشطة التجارية</h2>
 
               {/* Person photo */}
               <div style={S.photoCenter}>
