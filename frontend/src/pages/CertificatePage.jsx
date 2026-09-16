@@ -229,7 +229,7 @@ export default function CertificatePage() {
           .cert-header-inner {
             padding: 0 16px !important;
             height: 64px !important;
-            justify-content: flex-end !important;
+            justify-content: flex-start !important;
           }
           .cert-logo { display: none !important; }
           .cert-main-nav, .cert-header-actions { display: none !important; }
@@ -319,8 +319,8 @@ export default function CertificatePage() {
         {/* صف 3: كيف تتحقق — يسار بدون border */}
         <div style={S.govRow3}>
           <a href="#" style={S.govVerify}>
-            <span style={{ fontSize: '13px' }}>∨</span>
             كيف تتحقق
+            <span style={{ fontSize: '12px' }}>∨</span>
           </a>
         </div>
 
@@ -328,7 +328,7 @@ export default function CertificatePage() {
         <div style={S.govRow4}>
           {/* يسار: الإعدادات مع border وunderline */}
           <a href="#" style={S.settingsLink}>
-            <Settings size={15} strokeWidth={2} />
+            <Settings size={20} strokeWidth={2} />
             <span style={S.settingsText}>الإعدادات</span>
           </a>
           {/* يمين: أدوات سهولة الوصول */}
