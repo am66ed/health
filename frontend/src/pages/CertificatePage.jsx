@@ -72,14 +72,14 @@ const S = {
   settingsLink: {
     display: 'flex', alignItems: 'center', gap: '6px',
     color: '#222', textDecoration: 'none', fontSize: '13px',
-    fontWeight: '700',
-    border: '2px solid #555',
+    fontWeight: '800',
+    // border: '2px solid #555',
     borderRadius: '4px',
     padding: '4px 12px',
   },
   settingsText: {
-    textDecoration: 'underline',
-    textUnderlineOffset: '3px',
+    // textDecoration: 'underline',
+    // textUnderlineOffset: '3px',
   },
   /* Main header */
   mainHeader: {
